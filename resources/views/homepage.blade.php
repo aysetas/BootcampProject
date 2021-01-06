@@ -4,14 +4,14 @@
 
             <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
 
-                @foreach ($product_slider as $index=>$product_details)
+                @foreach ($product_slider as $index=>$product)
                     <div class="ps-banner"><img class="mobile-only" src="{{asset('farmart/')}}/img/slider/home-1/slide_03_mobile.png" alt="alt"><img class="desktop-only" src="{{asset('farmart/')}}/img/slider/home-1/slide_03.png" alt="alt">
                         <div class="ps-content {{ $index==0 ? 'active':'' }}">
                             <div class="container">
                                 <div class="ps-content-box">
                                     <div class="ps-node"><span class='text-danger'>SALE UP TO 30%</span></div>
-                                    <div class="ps-title">{{ $product_details->getProduct->product_name}}</div>
-                                    <div class="ps-subtitle">Only from <br><span class='price'>{{ $product_details->getProduct->price }} TL</span></div>
+                                    <div class="ps-title">{{ $product->product_name}}</div>
+                                    <div class="ps-subtitle">Only from <br><span class='price'>{{ $product->price }} TL</span></div>
                                     <div class="ps-shopnow"> <a href="shop-view-grid.html">Shop Now<i class="icon-chevron-right"></i></a></div>
                                 </div>
                             </div>
@@ -23,44 +23,43 @@
         <section class="section-featured--default ps-home--block">
             <div class="container">
                 <div class="ps-block__header">
-                    <h3 class="ps-block__title">Öne Çıkanlar</h3><a class="ps-block__view" href="shop-categories.html">View all<i class="icon-chevron-right"></i></a>
+                    <h3 class="ps-block__title">Öne Çıkanlar</h3>
                 </div>
                 <div class="featured--content">
                     <div class="featured__first">
-                        @foreach($product_featured as $product_details)
-                        <div class="ps-product--vertical"><a href="{{ route('product',$product_details->getProduct->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/02-FoodCupboard/02_19a.jpg" alt="alt"></a>
-                            <div class="ps-product__content"><a class="ps-product__name" href="{{ route('product',$product_details->getProduct->slug) }}">{{ $product_details->getProduct->product_name}}</a>
-                                <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product_details->getProduct->price}}</span></p>
+                        <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_16a.jpg" alt="alt"></a>
+                            <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">{{ $featured->product_name }}</a>
+                                <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $featured->price }}TL</span>
                             </div>
                         </div>
-                        @endforeach
                     </div>
                     <div class="featured__group">
                         <div class="row m-0">
-                            @foreach($product_featured as $product_details)
-                                <div class="col-3 p-0">
-                                    <div class="ps-product--vertical"><a href="{{ route('product',$product_details->getProduct->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/02-FoodCupboard/02_19a.jpg" alt="alt"></a>
-                                        <div class="ps-product__content"><a class="ps-product__name" href="{{ route('product',$product_details->getProduct->slug) }}">{{ $product_details->getProduct->product_name}}</a>
-                                            <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product_details->getProduct->price}}</span></p>
-                                        </div>
+                        @foreach ($product_featured as $product)
+
+                            <div class="col-3 p-0">
+                                <div class="ps-product--vertical"><a href="{{ route('product', $product->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/02-FoodCupboard/02_19a.jpg" alt="alt"></a>
+                                    <div class="ps-product__content"><a class="ps-product__name" href="{{ route('product', $product->slug) }}">{{ $product->product_name }}</a>
+                                        <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product->price }} TL</span>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
+
+                        @endforeach
 
                         </div>
                     </div>
                 </div>
                 <div class="featured--content-mobile">
                     <div class="owl-carousel" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
-                        @foreach($product_featured as $product_details)
+                        @foreach ($product_featured as $product)
                         <div class="product-slide">
-                            @foreach($product_featured as $product_details)
-                            <a class="ps-product--vertical item-first" href="{{ route('product',$product_details->getProduct->slug) }}"><img class="ps-product__thumbnail" src="img/products/01-Fresh/01_16a.jpg" alt="alt">
-                                <div class="ps-product__content">
-                                    <h5 class="ps-product__name">{{ $product_details->getProduct->product_name}}</h5>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product_details->getProduct->price}}</span></p>
+                            @foreach ($product_featured as $product)
+                                <div class="ps-product--vertical"><a href="{{ route('product', $product->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/02-FoodCupboard/02_19a.jpg" alt="alt"></a>
+                                    <div class="ps-product__content"><a class="ps-product__name" href="{{ route('product', $product->slug) }}">{{ $product->product_name }}</a>
+                                        <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product->price }} TL</span>
+                                    </div>
                                 </div>
-                            </a>
                             @endforeach
                         </div>
                         @endforeach
@@ -77,12 +76,13 @@
                 <div class="flashdeal--content">
                     <div class="owl-carousel" data-owl-auto="false" data-owl-loop="false" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="6" data-owl-duration="1000" data-owl-mousedrag="on">
 
+                        @foreach ($product_opportunity_day as $product)
 
-                        <div class="ps-product--standard"><a href="{{ route('product', $show_opportunity_day->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_16a.jpg" alt="alt"></a>
+                        <div class="ps-product--standard"><a href="{{ route('product', $product->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_16a.jpg" alt="alt"></a>
                             <div class="ps-product__content">
-                                <p class="ps-product-price-block"><span class="ps-product__price">{{ $show_opportunity_day->price }} TL</span></p>
-                                <a href="{{ route('product', $show_opportunity_day->slug) }}">
-                                    <h5 class="ps-product__name">{{ $show_opportunity_day->product_name }}</h5>
+                                <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product->price }} TL</span>
+                                <a href="{{ route('product', $product->slug) }}">
+                                    <h5 class="ps-product__name">{{ $product->product_name }}</h5>
                                 </a>
 
                                 <div class="ps-product__rating">
@@ -111,13 +111,7 @@
                                 <div class="ps-product__box"><a class="ps-product__wishlist" href="wishlist.html">Wishlist</a><a class="ps-product__compare" href="wishlist.html">Compare</a></div>
                             </div>
                         </div>
-
-
-
-
-
-
-
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -1559,128 +1553,23 @@
         <section class="section-recommendations--default ps-home--block">
             <div class="container">
                 <div class="ps-block__header mobile">
-                    <h3 class="ps-block__title">Önerilenler</h3>
-                    <div class="ps-block__list">
-                        <ul>
-                            <li class="menu-item"> <a href="shop-categories.html">New Arrivals</a>
-                            </li>
-                            <li class="menu-item"> <a href="shop-categories.html">Best Selling</a>
-                            </li>
-                            <li class="menu-item"> <a href="shop-categories.html">Most Popular</a>
-                            </li>
-                            <li class="menu-item"> <a href="shop-categories.html">On Sales</a>
-                            </li>
-                            <li class="menu-item"> <a href="shop-categories.html">All</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <h3 class="ps-block__title">İndirimli Ürünler</h3>
                 </div>
                 <div class="recommendations__content">
                     <div class="owl-carousel" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="3" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000" data-owl-mousedrag="on">
-                        <div class="recommendation-carousel">
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_31a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Chicken Drums Jumbo Pk</a></h5>
-                                    <p class="ps-product__unit">1kg</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">$13.99</span>
-                                    </p>
-                                </div>
+                       @foreach ($product_discounted as $product)
+                            <div class="recommendation-carousel">
+                                @foreach ($product_discounted as $product)
+                                    <div class="ps-product--vertical"><a href="{{ route('product',$product->slug) }}"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_31a.jpg" alt="alt"></a>
+                                        <div class="ps-product__content">
+                                            <h5><a class="ps-product__name" href="{{ route('product',$product->slug) }}">{{ $product->product_name }}</a></h5>
+                                            <p class="ps-product-price-block"><span class="ps-product__price-default">{{ $product->price }}TL</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_18a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Grapes, Red Seedless</a></h5>
-                                    <p class="ps-product__unit">100g</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">$5.99</span><span class="ps-product__price">$11.90</span><span class="ps-product__off">20% Off</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/07-Beer-WineSpirits/07_11a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Honest Organic Still Beer</a></h5>
-                                    <p class="ps-product__unit">4 per pack</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">$39.90</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recommendation-carousel">
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_27a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">British Organic Meat</a></h5>
-                                    <p class="ps-product__unit">500g</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">$3.99</span><span class="ps-product__price">$11.90</span><span class="ps-product__off">60% Off</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_7a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Duchy Lemonade</a></h5>
-                                    <p class="ps-product__unit">100g</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">$4.49</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/07-Beer-WineSpirits/07_8a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Jacks Original Pepperoni</a></h5>
-                                    <p class="ps-product__unit">750ml</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">$5.99</span><span class="ps-product__price">$11.90</span><span class="ps-product__off">15% Off</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recommendation-carousel">
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_1a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Corn Yellow Sweet</a></h5>
-                                    <p class="ps-product__unit">4 per pack</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">$6.99</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/07-Beer-WineSpirits/07_2a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Extreme Budweiser Light Can</a></h5>
-                                    <p class="ps-product__unit">330ml</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">$5.99</span><span class="ps-product__price">$11.90</span><span class="ps-product__off">45% Off</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/02-FoodCupboard/02_3a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Large Green Bell Snack</a></h5>
-                                    <p class="ps-product__unit">180g</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">$9.99</span><span class="ps-product__price">$11.90</span><span class="ps-product__off">16% Off</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recommendation-carousel">
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_31a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Chicken Drums Jumbo Pk</a></h5>
-                                    <p class="ps-product__unit">1kg</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">$13.99</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_18a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Grapes, Red Seedless</a></h5>
-                                    <p class="ps-product__unit">100g</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">$5.99</span><span class="ps-product__price">$11.90</span><span class="ps-product__off">20% Off</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ps-product--vertical"><a href="product-default.html"><img class="ps-product__thumbnail" src="img/products/07-Beer-WineSpirits/07_11a.jpg" alt="alt"></a>
-                                <div class="ps-product__content">
-                                    <h5><a class="ps-product__name" href="product-default.html">Honest Organic Still Beer</a></h5>
-                                    <p class="ps-product__unit">4 per pack</p>
-                                    <p class="ps-product-price-block"><span class="ps-product__price-default">$39.90</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                       @endforeach
                     </div>
                 </div>
             </div>
@@ -1688,21 +1577,13 @@
         <section class="section-recent--default ps-home--block">
             <div class="container">
                 <div class="ps-block__header">
-                    <h3 class="ps-block__title">En Son Görüntülediğiniz</h3><a class="ps-block__view" href="shop-categories.html">Hepsini Gör<i class="icon-chevron-right"></i></a>
+                    <h3 class="ps-block__title">En Çok Satılanlar</h3><a class="ps-block__view" href="shop-categories.html">Hepsini Gör<i class="icon-chevron-right"></i></a>
                 </div>
                 <div class="recent__content">
                     <div class="owl-carousel" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="3" data-owl-item-md="5" data-owl-item-lg="8" data-owl-item-xl="8" data-owl-duration="1000" data-owl-mousedrag="on">
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_1a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_2a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_30a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_10a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_18a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_28b.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_16a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_31a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_15a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_5a.jpg" alt="alt"></a>
-                    <a class="recent-item" href="shop-categories.html"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_32a.jpg" alt="alt"></a>
+                        @foreach ($product_bestseller as $product)
+                          <a class="recent-item" href="{{ route('product',$product->slug) }}"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_1a.jpg" alt="alt"></a>
+                        @endforeach
                     </div>
                 </div>
             </div>

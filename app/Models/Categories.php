@@ -11,8 +11,9 @@ class Categories extends Model
     protected $table='categories';
     protected $fillable=['categoryName' , 'slug'];
 
-    public function categories(){
-        return $this ->balongsToMany('App\Models\Categories' , 'category_products');
+
+    public function products(){
+        return $this ->belongsToMany('App\Models\Products' , 'category_products');
     }
 
 }

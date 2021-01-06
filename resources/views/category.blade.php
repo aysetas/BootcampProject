@@ -31,26 +31,19 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-12 col-lg-9">
                     <div class="category__top">
                         <div class="category__header">
                             <h3 class="category__name">Fresh</h3>
                         </div>
-
-
-
-
                     </div>
-
-
                     <div class="result__header mobile">
                         <h4 class="title">35<span>Product Found</span></h4>
                     </div>
                     <div class="result__content mt-4">
                         <div class="section-shop--grid">
                             <div class="row m-0">
-                                @if($products)
+
                                 @foreach ($products as $product)
                                 <div class="col-6 col-md-4 col-lg-3 p-0">
                                     <div class="ps-product--standard">
@@ -94,8 +87,11 @@
                                 </div>
 
                                 @endforeach
-                                @endif
 
+
+                            </div>
+                            <div class="ps-pagination blog--pagination">
+                                {{ $products->links() }}
                             </div>
                         </div>
 

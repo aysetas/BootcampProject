@@ -12,4 +12,17 @@ class ProductController extends Controller
      return view('product',compact('product' ));
 
     }
+
+    public function search(){
+
+        $aranan=request()->input('aranan');
+
+        $products=Products::where('product_name' ,'like' ,"%{$aranan}%")
+        ->orWhere('content', 'like' ,"%{$aranan}%")
+        ->paginate(4);
+
+        request()->flash();  //aranan ismi oturum içinde bir kere saklar
+        return view('search',compact('products'));
+
+    }
 }

@@ -21,10 +21,18 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [HomeController::class,'index'])->name('homepage');
+
 Route::get('/category/{slug_categoryName}', [CategoryController::class,'index'])->name('category');
+
 Route::get('/product/{slug_productName}', [ProductController::class,'index'])->name('product');
+
+Route::post('/search', [ProductController::class,'search'])->name('product_search');
+Route::get('/search', [ProductController::class,'search'])->name('product_search');
+
 Route::get('/shoppingCart', [ShoppingcartController::class,'index'])->name('shoppingCart');
+
 Route::get('/payment', [PaymentController::class,'index'])->name('payment');
+
 Route::get('/order', [OrderController::class,'index'])->name('order');
 
 Route::group(['prefix' => 'users'], function () {
