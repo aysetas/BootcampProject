@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="{{ asset('farmart/') }}/plugins/lightGallery/dist/css/lightgallery.min.css">
     <link rel="stylesheet" href="{{ asset('farmart/') }}/css/style.css">
 </head>
-
 <body>
     <header class="header">
         <div class="ps-top-bar">
@@ -34,16 +33,11 @@
                 <div class="top-bar">
                     <div class="top-bar__left">
                         <ul class="nav-top">
-                            <li class="nav-top-item"> <a class="nav-top-link" href="#">Sell on Famart.</a>
-                            </li>
-                            <li class="nav-top-item"> <a class="nav-top-link text-success" href="#">Register Now</a>
-                            </li>
+                            <li class="nav-top-item"><a class="nav-top-link" href="tel:970978-6290"> <i class="icon-telephone"></i><span>Hotline:</span><span class="text-success font-bold">970 978-6290</span></a></li>
                         </ul>
                     </div>
                     <div class="top-bar__right">
                         <ul class="nav-top">
-                            <li class="nav-top-item contact"><a class="nav-top-link" href="tel:970978-6290"> <i class="icon-telephone"></i><span>Hotline:</span><span class="text-success font-bold">970 978-6290</span></a></li>
-                            <li class="nav-top-item"><a class="nav-top-link" href="order-tracking.html">Order Tracking</a></li>
                             <li class="nav-top-item languages"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-languages">English</span><i class="icon-chevron-down"></i></a>
                                 <div class="select--dropdown">
                                     <ul class="select-languages">
@@ -53,54 +47,56 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-top-item currency"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-currency">USD</span><i class="icon-chevron-down"></i></a>
-                                <div class="select--dropdown">
-                                    <ul class="select-currency">
-                                        <li class="active currency-item" data-value="USD"><a href="javascript:void(0);">USD</a></li>
-                                        <li class="currency-item" data-value="VND"><a href="javascript:void(0);">VND</a></li>
-                                        <li class="currency-item" data-value="EUR"><a href="javascript:void(0);">EUR</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-top-item account"><a class="nav-top-link" href="javascript:void(0);"> <i class="icon-user"></i>Hi! <span class="font-bold">Jonhnathan</span></a>
-                                <div class="account--dropdown">
-                                    <div class="account-anchor">
-                                        <div class="triangle"></div>
+                            @guest
+                                <li class="nav-top-item currency"><a class="nav-top-link" href="{{ route('users.login') }}"> <span class="current-currency">Oturum Aç</span></a></li>
+                                <li class="nav-top-item"><a class="nav-top-link" href="{{ route('users.register') }}">Kaydol</a></li>
+                            @endguest
+
+                            @auth
+                                <li class="nav-top-item account"><a class="nav-top-link" href="javascript:void(0);"> <i class="icon-user"></i>Hoşgeldin! <span class="font-bold">profil</span></a>
+                                    <div class="account--dropdown">
+                                        <div class="account-anchor">
+                                            <div class="triangle"></div>
+                                        </div>
+                                        <div class="account__content">
+                                            <ul class="account-list">
+                                                <li class="title-item"> <a href="javascript:void(0);">Hesabım</a>
+                                                </li>
+                                                <li> <a href="#">Dasdboard</a>
+                                                </li>
+                                                <li> <a href="#">Account Setting</a>
+                                                </li>
+                                                <li> <a href="shopping-cart.html">Orders</a>
+                                                </li>
+                                                <li> <a href="wishlist.html">Wishlist</a>
+                                                </li>
+                                                <li> <a href="#">Shipping Address</a>
+                                                </li>
+                                            </ul>
+                                            <hr>
+                                            <ul class="account-list">
+                                                <li class="title-item"> <a href="javascript:void(0);">Vendor Settings</a>
+                                                </li>
+                                                <li> <a href="#">Dasdboard</a>
+                                                </li>
+                                                <li> <a href="#">Products</a>
+                                                </li>
+                                                <li> <a href="shopping-cart.html">Orders</a>
+                                                </li>
+                                                <li> <a href="#">Settings</a>
+                                                </li>
+                                                <li> <a href="vendor-store.html">View Store</a>
+                                                </li>
+                                            </ul>
+                                            <hr><a class="account-logout" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                                                <i class="icon-exit-left"></i>Çıkış</a>
+                                            <form id="logout-form" action="{{ route('users.logout') }}" method="POST" style="display:none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="account__content">
-                                        <ul class="account-list">
-                                            <li class="title-item"> <a href="javascript:void(0);">My Account</a>
-                                            </li>
-                                            <li> <a href="#">Dasdboard</a>
-                                            </li>
-                                            <li> <a href="#">Account Setting</a>
-                                            </li>
-                                            <li> <a href="shopping-cart.html">Orders</a>
-                                            </li>
-                                            <li> <a href="wishlist.html">Wishlist</a>
-                                            </li>
-                                            <li> <a href="#">Shipping Address</a>
-                                            </li>
-                                        </ul>
-                                        <hr>
-                                        <ul class="account-list">
-                                            <li class="title-item"> <a href="javascript:void(0);">Vendor Settings</a>
-                                            </li>
-                                            <li> <a href="#">Dasdboard</a>
-                                            </li>
-                                            <li> <a href="#">Products</a>
-                                            </li>
-                                            <li> <a href="shopping-cart.html">Orders</a>
-                                            </li>
-                                            <li> <a href="#">Settings</a>
-                                            </li>
-                                            <li> <a href="vendor-store.html">View Store</a>
-                                            </li>
-                                        </ul>
-                                        <hr><a class="account-logout" href="#"><i class="icon-exit-left"></i>Log out</a>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                        @endauth
                         </ul>
                     </div>
                 </div>
@@ -112,7 +108,7 @@
                     <div class="header-inner__left">
                         <button class="navbar-toggler"><i class="icon-menu"></i></button>
                     </div>
-                    <div class="header-inner__center"><a class="logo open" href="index.html">Farm<span class="text-black">art.</span></a></div>
+                    <div class="header-inner__center"><a class="logo open" href="index.html">Yöresel<span class="text-black">Sof.</span></a></div>
                     <div class="header-inner__right">
                         <button class="button-icon icon-sm search-mobile"><i class="icon-magnifier"></i></button>
                     </div>
@@ -122,7 +118,7 @@
         <section class="ps-header--center header-desktop">
             <div class="container">
                 <div class="header-inner">
-                    <div class="header-inner__left"><a class="logo" href="index.html">Farm<span class="text-black">art.</span></a>
+                    <div class="header-inner__left"><a class="logo" href="index.html">Yöresel<span class="text-black">Sof.</span></a>
 
                         <ul class="menu">
 
@@ -232,7 +228,7 @@
         <nav class="navigation">
             <div class="container">
                 <ul class="menu">
-                    <li class="menu-item-has-children has-mega-menu "><a class="nav-link " href="index.html">ANASAYFA</a>
+                    <li class="menu-item-has-children has-mega-menu "><a class="nav-link " href="{{ route('homepage')}}">ANASAYFA</a>
                     </li>
                     <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">YEMEKLER</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
                         <div class="mega-menu mega-shop">

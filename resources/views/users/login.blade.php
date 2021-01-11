@@ -16,48 +16,45 @@
                 <div class="col-12 col-lg-6">
                     <div class="login__box">
                         <div class="login__header">
-                            <h3 class="login__login">LOGIN</h3>
-                            <h3 class="login__register">REGISTER</h3>
+                            <h3 class="login__login">GİRİŞ</h3>
                         </div>
-                        <div class="login__content">
-                            <div class="login__label">Login to your account.</div>
-                            <div class="input-group">
-                                <input class="form-control" type="email" placeholder="Username/ Email">
-                            </div>
-                            <div class="input-group group-password">
-                                <input class="form-control" type="password" placeholder="Password">
-                                <div class="input-group-append">
-                                    <button class="btn forgot-pass" type="button">Forgot?</button>
+                        @include('layouts.error.errors')
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('users.login') }}">
+                            {{ csrf_field() }}
+                            <div class="login__content">
+                                <div class="login__label">Hesabınıza giriş yapınız</div>
+                                <div class="input-group">
+                                    <input id="email" type="email" class="form-control" name="email" placeholder="Lütfen Email adresinizi giriniz.." value="{{ old('email') }}" required>
                                 </div>
+                                <div class="input-group group-password">
+                                    <input id="password" class="form-control" type="password" name="password" placeholder="Lütfen Şifre giriniz..">
+                                    <div class="input-group-append">
+                                        <button class="btn forgot-pass" type="button">Şifremi Unuttum</button>
+                                    </div>
+                                </div>
+                                <div class="input-group form-check">
+                                    <input id="rememberme" class="form-check-input" name="rememberme" type="checkbox" checked >
+                                      <label class="form-check-label">Beni Hatırla</label>
+
+                                </div>
+                                <button class="btn btn-login" type="submit">Giriş</button>
                             </div>
-                            <div class="input-group form-check">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label">Remember me</label>
-                            </div>
-                            <button class="btn btn-login" type="submit">Login</button>
-                            <div class="login__conect">
-                                <hr>
-                                <p>Or login with</p>
-                                <hr>
-                            </div>
-                            <button class="btn btn-social btn-facebook"> <i class="fa fa-facebook-f"></i>Login with Facebook</button>
-                            <button class="btn btn-social btn-google"> <i class="fa fa-google-plus"></i>Login with Google</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <h3 class="login__title">Advantages Of Becoming A Member</h3>
-                    <p class="login__description"> <b>Famart Buyer Protection </b>has you covered from click to delivery.<br>Sign up or sign in and you will be able to: </p>
+                    <h3 class="login__title">Üye Olmanın Avantajları</h3>
+                    <p class="login__description"> <b>MEMLEKETİMDEN İSTE, </b><br>Kayıt olup giriş yaptıktan sonra şunları yapabilirsiniz: </p>
                     <div class="login__orther">
-                        <p> <i class="icon-truck"></i>Easily Track Orders, Hassle free Returns</p>
-                        <p> <i class="icon-alarm2"></i>Get Relevant Alerts and Recommendation</p>
-                        <p><i class="icon-star"></i>Wishlist, Reviews, Ratings and more.</p>
+                        <p> <i class="icon-truck"></i>Siparişleri Kolayca Takip Edin, Sorunsuz İadeler</p>
+                        <p> <i class="icon-alarm2"></i>İlgili Uyarıları ve Önerileri Alın</p>
+                        <p><i class="icon-star"></i>İstek Listesi, İncelemeler, Değerlendirmeler ve daha fazlası.</p>
                     </div>
                     <div class="login__vourcher">
-                        <div class="vourcher-money"><span class="unit">$</span><span class="number">25</span></div>
+                        <div class="vourcher-money"><span class="number">25</span><span class="unit">TL</span></div>
                         <div class="vourcher-content">
-                            <h4 class="vourcher-title">GIFT VOURCHER FOR FISRT PURCHASE</h4>
-                            <p>We give $25 as a small gift for your first purchase.<br>Welcome to Farmart Market!</p>
+                            <h4 class="vourcher-title">İLK SATIN ALMA İÇİN HEDİYE ÇEKİ</h4>
+                            <p>İlk alışverişinizde küçük bir hediye olarak 25 TL veriyoruz.<br>MEMLEKETİMDEN İSTE'YE HOŞGELDİNİZ!</p>
                         </div>
                     </div>
                 </div>

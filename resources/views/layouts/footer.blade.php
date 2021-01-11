@@ -449,6 +449,7 @@
 <script src="{{ asset('farmart/') }}/plugins/slick/slick.js"></script>
 <script src="{{ asset('farmart/') }}/plugins/lightGallery/dist/js/lightgallery-all.min.js"></script>
 <script src="{{ asset('farmart/') }}/../../gh/Dogfalo/materialize@master/extras/noUiSlider/nouislider.min.js"></script>
+<script src="{{ asset('farmart/') }}/js/app.js"></script>
 <!-- custom code-->
 <script src="{{ asset('farmart/') }}/js/main.js"></script>
 </body>

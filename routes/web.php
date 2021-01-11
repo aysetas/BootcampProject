@@ -31,13 +31,19 @@ Route::get('/search', [ProductController::class,'search'])->name('product_search
 
 Route::get('/shoppingCart', [ShoppingcartController::class,'index'])->name('shoppingCart');
 
-Route::get('/payment', [PaymentController::class,'index'])->name('payment');
-
-Route::get('/order', [OrderController::class,'index'])->name('order');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/payment', [PaymentController::class,'index'])->name('payment');
+    Route::get('/orders', [OrderController::class,'index'])->name('orders');
+    Route::get('/orders/{id}', [OrderController::class,'detail'])->name('order');
+});
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('/login',[UserController::class, 'login_form'])->name('users.login');
+    Route::post('/login',[UserController::class, 'login']);
     Route::get('/register',[UserController::class, 'register_form'])->name('users.register');
+    Route::post('/register',[UserController::class, 'register']);
+    Route::get('/activate/{key}',[UserController::class, 'activate'])->name('activate');
+    Route::post('/logout',[UserController::class, 'logout'])->name('users.logout');
 });
 
 
