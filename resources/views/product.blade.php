@@ -6,11 +6,7 @@
         <div class="container">
             <ul class="ps-breadcrumb__list">
                 <li class="active"><a href="{{ route('homepage') }}">Anasayfa</a></li>
-               @if($product->categories)
-               @foreach($product->categories->distinct()->get() as $category)
-                <li class="active"><a href="{{ route('category', $category->slug) }}">{{ $category->categoryName }}</a></li>
-               @endforeach
-               @endif
+
                 <li><a href="javascript:void(0);">{{ $product->product_name }}</a></li>
             </ul>
         </div>
@@ -39,16 +35,16 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="ps-product__variants">
                                         <div class="ps-product__gallery">
-                                            <div class="ps-gallery__item active"><img src="img/products/01-Fresh/01_35a.jpg" alt="alt"></div>
-                                            <div class="ps-gallery__item"><img src="img/products/01-Fresh/01_35b.jpg" alt="alt"></div>
-                                            <div class="ps-gallery__item" data-video-url="https://sachinchoolur.github.io/lightGallery/static/videos/video4.mp4"><img src="img/products/01-Fresh/01_35b.jpg" alt="alt">
+                                            <div class="ps-gallery__item active"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_35a.jpg" alt="alt"></div>
+                                            <div class="ps-gallery__item"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_35b.jpg" alt="alt"></div>
+                                            <div class="ps-gallery__item" data-video-url="https://sachinchoolur.github.io/lightGallery/static/videos/video4.mp4"><img src="{{asset('farmart/')}}/img/products/01-Fresh/01_35b.jpg" alt="alt">
                                                 <ul class="ps-gallery--poster">
                                                     <li><span></span><i class="fa fa-play-circle"></i></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="ps-product__thumbnail">
-                                            <div class="ps-product__zoom"><img id="ps-product-zoom" src="img/products/01-Fresh/01_35b.jpg" alt="alt">
+                                            <div class="ps-product__zoom"><img id="ps-product-zoom" src="{{asset('farmart/')}}/img/products/01-Fresh/01_35b.jpg" alt="alt">
                                                 <ul class="ps-gallery--poster" id="ps-lightgallery-videos" data-video-url="#">
                                                     <li data-html="#video-play"><span></span><i class="fa fa-play-circle"></i></li>
                                                 </ul>
@@ -62,17 +58,18 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
+                                    <label>Fiyatı:</label>
                                     <div class="ps-product__price">{{ $product->price }} TL</div>
 
                                     <div class="ps-product__shopping">
-                                        <div class="ps-product__quantity">
-                                            <label>Quantity: </label>
-                                            <div class="def-number-input number-input safari_only">
-                                                <button class="minus" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="icon-minus"></i></button>
-                                                <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                <button class="plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="icon-plus"></i></button>
-                                            </div>
-                                        </div><a class="ps-product__addcart ps-button" data-toggle="modal" data-target="#popupAddToCart"><i class="icon-cart"></i>Add to cart</a><a class="ps-product__icon" href="wishlist.html"></a>
+                                        <form action="{{ route('shoppingCart.add') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="id" value="{{ $product->id }}">
+                                            <button type="submit" class="ps-product__addcart ps-button" data-toggle="modal"  data-target="#popupAddToCart" value="SEPETE EKLE"><i class="icon-cart"></i>SEPETE EKLE</button>
+
+
+
+                                        </form>
                                     </div>
                                 </div>
 
@@ -182,7 +179,7 @@
                                                                         <option value="5">5</option>
                                                                     </select>
                                                                 </div>
-                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from Farmart. I just can't get enough of Farmart. I want to get a T-Shirt with Farmart on it so I can show it off to everyone.</p>
+                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased.</p>
                                                             </div>
                                                         </li>
                                                         <li class="comment__item">
@@ -200,7 +197,7 @@
                                                                         <option value="5">5</option>
                                                                     </select>
                                                                 </div>
-                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from Farmart. I just can't get enough of Farmart. I want to get a T-Shirt with Farmart on it so I can show it off to everyone.</p>
+                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. .</p>
                                                             </div>
                                                         </li>
                                                         <li class="comment__item">
@@ -218,7 +215,7 @@
                                                                         <option value="5" selected="selected">5</option>
                                                                     </select>
                                                                 </div>
-                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from Farmart. I just can't get enough of Farmart. I want to get a T-Shirt with Farmart on it so I can show it off to everyone.</p>
+                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. e.</p>
                                                             </div>
                                                         </li>
                                                         <li class="comment__item">
@@ -236,7 +233,7 @@
                                                                         <option value="5" selected="selected">5</option>
                                                                     </select>
                                                                 </div>
-                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from Farmart. I just can't get enough of Farmart. I want to get a T-Shirt with Farmart on it so I can show it off to everyone.</p>
+                                                                <p class="item__des">Farmart is great. Farmart is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from Farmart. I just  it off to everyone.</p>
                                                             </div>
                                                         </li>
                                                     </ul>

@@ -17,7 +17,7 @@ class CreateShoppingcartProductsTable extends Migration
             $table->increments('id');
             $table->integer('shopping_carts_id')->unsigned();
             $table->integer('products_id')->unsigned();
-            $table->integer('number');
+            $table->integer('quantity'); //miktar
             $table->decimal('price',5,2);
             $table->string('position',30); //durum
             $table->timestamp('deleted_at')->nullable();

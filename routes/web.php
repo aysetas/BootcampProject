@@ -29,7 +29,13 @@ Route::get('/product/{slug_productName}', [ProductController::class,'index'])->n
 Route::post('/search', [ProductController::class,'search'])->name('product_search');
 Route::get('/search', [ProductController::class,'search'])->name('product_search');
 
-Route::get('/shoppingCart', [ShoppingcartController::class,'index'])->name('shoppingCart');
+Route::group(['prefix' => 'shoppingCart'], function () {
+    Route::get('/', [ShoppingcartController::class,'index'])->name('shoppingCart');
+    Route::post('/add',[ShoppingcartController::class,'add'])->name('shoppingCart.add');
+    Route::delete('/delete/{rowId}',[ShoppingcartController::class,'delete'])->name('shoppingCart.delete');
+    Route::delete('bosalt',[ShoppingcartController::class,'clear'])->name('shoppingCart.clear');
+});
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/payment', [PaymentController::class,'index'])->name('payment');

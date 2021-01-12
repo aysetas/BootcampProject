@@ -162,15 +162,15 @@
                     </div>
 
                     <div class="header-inner__right">
-                        <button class="button-icon icon-md"><i class="icon-repeat"></i></button><a class="button-icon icon-md" href="wishlist.html"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
-                        <div class="button-icon btn-cart-header"><i class="icon-cart icon-shop5"></i><span class="badge bg-warning">3</span>
+                        <div class="button-icon btn-cart-header"><i class="icon-cart icon-shop5"></i><span class="badge bg-warning">{{ Cart::count() }}</span>
                             <div class="mini-cart">
                                 <div class="mini-cart--content">
                                     <div class="mini-cart--overlay"></div>
                                     <div class="mini-cart--slidebar cart--box">
+                                        @if(count(Cart::content())>0)
                                         <div class="mini-cart__header">
                                             <div class="cart-header-title">
-                                                <h5>Shopping Cart(3)</h5><a class="close-cart" href="javascript:void(0);"><i class="icon-arrow-right"></i></a>
+                                                <h5>SEPET{{ Cart::count() }}</h5><a class="close-cart" href="{{ route('shoppingCart') }}"><i class="icon-arrow-right"></i></a>
                                             </div>
                                         </div>
                                         <div class="mini-cart__products">
@@ -180,43 +180,37 @@
                                                 </div>
                                             </div>
                                             <ul class="list-cart">
+                                                @foreach (Cart::content() as $ProductCartItem)
+
                                                 <li class="cart-item">
-                                                    <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="img/products/01-Fresh/01_18a.jpg" alt="alt"></a>
-                                                        <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Extreme Budweiser Light Can</a>
-                                                            <p class="ps-product__unit">500g</p>
-                                                            <p class="ps-product__meta"> <span class="ps-product__price">$3.90</span><span class="ps-product__quantity">(x1)</span>
+                                                    <div class="ps-product--mini-cart">
+                                                        <a href="{{route('product' ,$ProductCartItem->options->slug )}}">
+                                                            <img class="ps-product__thumbnail" src="{{asset('farmart/')}}/img/products/01-Fresh/01_18a.jpg" alt="alt">
+                                                        </a>
+                                                        <div class="ps-product__content"><a class="ps-product__name" href="{{route('product' ,$ProductCartItem->options->slug )}}">{{ $ProductCartItem->name }}</a>
+                                                            <p class="ps-product__meta"> <span class="ps-product__price">{{ $ProductCartItem->price }} ₺</span><span class="ps-product__quantity">X{{ $ProductCartItem->qty }}</span>
                                                             </p>
                                                         </div>
                                                         <div class="ps-product__remove"><i class="icon-trash2"></i></div>
                                                     </div>
                                                 </li>
-                                                <li class="cart-item">
-                                                    <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="img/products/01-Fresh/01_31a.jpg" alt="alt"></a>
-                                                        <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Honest Organic Still Lemonade</a>
-                                                            <p class="ps-product__unit">100g</p>
-                                                            <p class="ps-product__meta"> <span class="ps-product__price-sale">$5.99</span><span class="ps-product__is-sale">$8.99</span><span class="quantity">(x1)</span>
-                                                            </p>
-                                                        </div>
-                                                        <div class="ps-product__remove"><i class="icon-trash2"></i></div>
-                                                    </div>
-                                                </li>
-                                                <li class="cart-item">
-                                                    <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="img/products/01-Fresh/01_16a.jpg" alt="alt"></a>
-                                                        <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Matures Own 100% Wheat</a>
-                                                            <p class="ps-product__unit">1.5L</p>
-                                                            <p class="ps-product__meta"> <span class="ps-product__price">$12.90</span><span class="ps-product__quantity">(x1)</span>
-                                                            </p>
-                                                        </div>
-                                                        <div class="ps-product__remove"><i class="icon-trash2"></i></div>
-                                                    </div>
-                                                </li>
+
+                                                @endforeach
                                             </ul>
                                         </div>
                                         <div class="mini-cart__footer row">
-                                            <div class="col-6 title">TOTAL</div>
-                                            <div class="col-6 text-right total">$29.98</div>
-                                            <div class="col-12 d-flex"><a class="view-cart" href="shopping-cart.html">View cart</a><a class="checkout" href="checkout.html">Checkout</a></div>
+                                            <p class="col-6 title">ARA TUTAR</p>
+                                            <div class="col-6 text-right total">{{ cart::subtotal() }}</div>
+
+                                            <div class="col-12 d-flex"><a class="view-cart" href="{{ route('shoppingCart') }}">Sepeti Görüntüle</a><a class="{{ route('payment') }}" href="">Ödeme Yap</a></div>
                                         </div>
+                                        @else
+                                        <div class="text-center">
+                                            <img style="padding:50px;" src="{{asset('farmart/')}}/img/shoppingcart.png" width="250"  class="img-fluid" alt="Boş Sepet">
+                                            <p style="font-size:15px; color:black;"><strong>ÜZGÜNÜZ SEPETİNİZDE ÜRÜN BULUNMAMAKTADIR.</strong></p>
+                                        <button style=" background-color:#ff7200; font-size:12px; color:#fff; border:1px solid #ff7200; padding:5px;"  type="submit"  value="ALIŞVERİŞE GİT"> <a href="{{ route('homepage') }}">ALIŞVERİŞE GİT</a></button>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -463,5 +457,4 @@
             </div>
         </div>
     </header>
-    <main class="no-main">
-        <div class="section-slide--default">
+

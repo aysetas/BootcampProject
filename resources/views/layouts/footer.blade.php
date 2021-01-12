@@ -1,5 +1,4 @@
-</div>
-</main>
+
 <footer class="ps-footer">
     <div class="container">
         <div class="ps-footer--contact">
@@ -22,14 +21,7 @@
                                 </li>
                                 <li> <a href="#">Sore Locations</a>
                                 </li>
-                                <li> <a href="#">Terms of Use</a>
-                                </li>
-                                <li> <a href="#">Policy</a>
-                                </li>
-                                <li> <a href="#">Flash Sale</a>
-                                </li>
-                                <li> <a href="#">FAQs</a>
-                                </li>
+
                             </ul>
                             <hr>
                         </div>
@@ -223,6 +215,7 @@
         </div>
     </div>
 </footer>
+
 <div class="ps-footer-mobile">
     <div class="menu__content">
         <ul class="menu--footer">
