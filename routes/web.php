@@ -22,6 +22,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class,'index'])->name('homepage');
 
+
 Route::get('/category/{slug_categoryName}', [CategoryController::class,'index'])->name('category');
 
 Route::get('/product/{slug_productName}', [ProductController::class,'index'])->name('product');
@@ -34,6 +35,8 @@ Route::group(['prefix' => 'shoppingCart'], function () {
     Route::post('/add',[ShoppingcartController::class,'add'])->name('shoppingCart.add');
     Route::delete('/delete/{rowId}',[ShoppingcartController::class,'delete'])->name('shoppingCart.delete');
     Route::delete('bosalt',[ShoppingcartController::class,'clear'])->name('shoppingCart.clear');
+
+    Route::PATCH('/guncelle/{rowId}',[ShoppingcartController::class,'update'])->name('shoppingCart.update');
 });
 
 

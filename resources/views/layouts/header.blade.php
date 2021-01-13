@@ -12,9 +12,10 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title' ,'Memleketimden İste')</title>
 
-    <link href="/../../css.css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('farmart/') }}/fonts/Linearicons/Font/demo-files/demo.css">
     <link rel="stylesheet" href="{{ asset('farmart/') }}/../../gh/Dogfalo/materialize@master/extras/noUiSlider/nouislider.css">
     <link rel="stylesheet" href="{{ asset('farmart/') }}/plugins/bootstrap/css/bootstrap.min.css">

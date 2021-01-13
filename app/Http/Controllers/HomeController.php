@@ -44,6 +44,10 @@ class HomeController extends Controller
         ->where('product_details.show_discounted' ,1)
         ->orderBy('updated_at' ,'desc')
         ->take(3)->get();
+
         return view('homepage' ,compact('categories','featured','product_slider','product_opportunity_day','product_featured','product_bestseller','product_discounted'));
+
     }
+
 }
+

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Cart;
 
+
 class ShoppingcartController extends Controller
 {
     public function index(){
@@ -33,5 +34,14 @@ class ShoppingcartController extends Controller
     public function clear(){
         Cart::destroy();
         return redirect()->route('shoppingCart');
+    }
+    public function update($rowId ){
+
+
+        Cart::update($rowId , request('quantity'));
+        session()->flash('message_type', 'success');
+        session()->flash('message', 'Miktar bilgisi güncellendi');
+
+        return response()->json(['success'=>true]);
     }
 }

@@ -65,7 +65,7 @@
                                         <form action="{{ route('shoppingCart.add') }}" method="POST">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="id" value="{{ $product->id }}">
-                                            <button type="submit" class="ps-product__addcart ps-button" data-toggle="modal"  data-target="#popupAddToCart" value="SEPETE EKLE"><i class="icon-cart"></i>SEPETE EKLE</button>
+                                            <button style="border:1px solid #ff7200" type="submit" class="ps-product__addcart ps-button" data-toggle="modal"  data-target="#popupAddToCart" ><i class="icon-cart"></i>SEPETE EKLE</button>
 
 
 

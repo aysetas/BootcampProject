@@ -42,9 +42,13 @@
                                                                 <h5><a class="ps-product__name" href="{{route('product' ,$ProductCartItem->options->slug )}}">{{ $ProductCartItem->name }}</a></h5>
                                                                 <p class="ps-product__meta">Fiyat: <span class="ps-product__price">{{ $ProductCartItem->price }} ₺</span></p>
                                                                 <div class="def-number-input number-input safari_only">
-                                                                    <button class="minus" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="icon-minus"></i></button>
+
+                                                                    <a href="#" class="btn btn-xs btn-default qty-minus" data-id="{{$ProductCartItem->rowId}}" data-qty="{{$ProductCartItem->qty-1}}"><i class="icon-minus"></i></a>
+
                                                                     <input class="quantity" min="0" name="quantity" value="{{ $ProductCartItem->qty }}" type="number">
-                                                                    <button class="plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="icon-plus"></i></button>
+
+                                                                    <a href="#" class="btn btn-xs btn-default qty-plus" data-id="{{$ProductCartItem->rowId}}" data-qty="{{$ProductCartItem->qty+1}}"><i class="icon-plus"></i></a>
+
                                                                 </div><span class="ps-product__total">Toplam Tutar: <span>{{ $ProductCartItem->subtotal }} </span></span>
                                                             </div>
                                                             <div class="ps-product__remove"><i class="icon-trash2"></i></div>
@@ -54,9 +58,12 @@
                                                     </div>
                                                     <div class="cart-quantity">
                                                         <div class="def-number-input number-input safari_only">
-                                                            <button class="minus" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="icon-minus"></i></button>
+                                                            <a href="#" class="btn btn-xs btn-default qty-minus" data-id="{{$ProductCartItem->rowId}}" data-qty="{{$ProductCartItem->qty-1}}"><i class="icon-minus"></i></a>
+
                                                             <input class="quantity" min="0" name="quantity" value="{{ $ProductCartItem->qty }}" type="number">
-                                                            <button class="plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="icon-plus"></i></button>
+
+                                                            <a href="#" class="btn btn-xs btn-default qty-plus" data-id="{{$ProductCartItem->rowId}}" data-qty="{{$ProductCartItem->qty+1}}"><i class="icon-plus"></i></a>
+
                                                         </div>
                                                     </div>
                                                     <div class="cart-total"> <span class="ps-product__total">{{ $ProductCartItem->subtotal }} ₺</span>
@@ -74,18 +81,18 @@
 
                                         </div>
                                     </div>
-                                  
+
                                     <div class="shopping-cart__step">
                                         <form action="{{route('shoppingCart.clear')}}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <input style="padding:10px 20px 30px 20px; font-size:12px; border:1px solid #ddd; color:#000;" type="submit" class="btn btn-light" value="SEPETİ BOŞALT">
-                                            
+
+                                            <button class="button right" type="submit" ><i class="icon-sync"></i>Sepeti Boşalt</button>
                                         </form>
-                                        <a class="button right" href="javascript:void(0);"><i class="icon-sync"> </i>Sepeti Güncelle</a>
+
                                         <a class="button left" href="{{route('homepage')}}"><i class="icon-arrow-left"></i>Alışverişe Devam</a>
                                     </div>
-                                
+
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4">
@@ -110,6 +117,8 @@
         </section>
 
     </div>
-  
+
 </main>
 @endsection
+
+

@@ -432,7 +432,8 @@
         </ul>
     </div>
 </nav>
-<script data-cfasync="false" src="{{ asset('farmart/') }}/../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('farmart/') }}/plugins/jquery.min.js"></script>
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="{{ asset('farmart/') }}/plugins/jquery.min.js"></script>
 <script src="{{ asset('farmart/') }}/plugins/popper.min.js"></script>
 <script src="{{ asset('farmart/') }}/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ asset('farmart/') }}/plugins/owl-carousel/owl.carousel.min.js"></script>
@@ -441,10 +442,12 @@
 <script src="{{ asset('farmart/') }}/plugins/select2/dist/js/select2.min.js"></script>
 <script src="{{ asset('farmart/') }}/plugins/slick/slick.js"></script>
 <script src="{{ asset('farmart/') }}/plugins/lightGallery/dist/js/lightgallery-all.min.js"></script>
-<script src="{{ asset('farmart/') }}/../../gh/Dogfalo/materialize@master/extras/noUiSlider/nouislider.min.js"></script>
-<script src="{{ asset('farmart/') }}/js/app.js"></script>
+<script src="../../gh/Dogfalo/materialize@master/extras/noUiSlider/nouislider.min.js"></script>
+
 <!-- custom code-->
 <script src="{{ asset('farmart/') }}/js/main.js"></script>
+
+<script src="js/app.js"></script>
 </body>
 
 </html>
