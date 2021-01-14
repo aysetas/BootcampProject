@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Products extends Model
 {
-    // model adı çoğul olmaz Product olmalı
 
     use HasFactory;
     use SoftDeletes;
