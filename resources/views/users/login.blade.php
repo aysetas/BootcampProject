@@ -10,8 +10,10 @@
             </ul>
         </div>
     </div>
+
     <section class="section--login">
         <div class="container">
+
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="login__box">
@@ -19,6 +21,8 @@
                             <h3 class="login__login">GİRİŞ</h3>
                         </div>
                         @include('layouts.error.errors')
+                        @include('layouts.error.alert')
+
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('users.login') }}">
                             {{ csrf_field() }}
                             <div class="login__content">

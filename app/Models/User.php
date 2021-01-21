@@ -14,4 +14,9 @@ class User extends Authenticatetable
     protected $table="users";
     protected $fillable=['nameSurname','email','password','activation_key','active'];
     protected $hidden=['password','activation_key'];
+
+    public function userDetail()
+    {
+        return $this->hasOne('App\Models\userDetail')->withDefault();
+    }
 }

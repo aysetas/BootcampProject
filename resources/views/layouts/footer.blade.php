@@ -444,6 +444,13 @@
 <script src="{{ asset('farmart/') }}/plugins/lightGallery/dist/js/lightgallery-all.min.js"></script>
 <script src="../../gh/Dogfalo/materialize@master/extras/noUiSlider/nouislider.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+<script>
+    $('.kredikarti').mask('0000-0000-0000-0000', { placeholder: "_ _ _ _-_ _ _ _-_ _ _ _-_ _ _ _" });
+    $('.kredikarti_cvv').mask('000', { placeholder: "_ _ _" });
+    $('.telefon').mask('(000) 000-00-00', { placeholder: "(_ _ _) _ _ _-_ _-_ _" });
+</script>
+
 <!-- custom code-->
 <script src="{{ asset('farmart/') }}/js/main.js"></script>
 

@@ -59,9 +59,7 @@
                                                     <div class="cart-quantity">
                                                         <div class="def-number-input number-input safari_only">
                                                             <a href="#" class="btn btn-xs btn-default qty-minus" data-id="{{$ProductCartItem->rowId}}" data-qty="{{$ProductCartItem->qty-1}}"><i class="icon-minus"></i></a>
-
                                                             <input class="quantity" min="0" name="quantity" value="{{ $ProductCartItem->qty }}" type="number">
-
                                                             <a href="#" class="btn btn-xs btn-default qty-plus" data-id="{{$ProductCartItem->rowId}}" data-qty="{{$ProductCartItem->qty+1}}"><i class="icon-plus"></i></a>
 
                                                         </div>
@@ -98,8 +96,8 @@
                             <div class="col-12 col-lg-4">
                                 <div class="shopping-cart__right">
                                     <div class="shopping-cart__total">
-                                        <p class="shopping-cart__subtotal"><span>Ara Tutar</span><span class="price">{{Cart::subtotal()}} ₺</span></p>
-                                        <p class="shopping-cart__shipping">Kargo Ücreti <span>{{ $tax = substr(Cart::subTotal()*0.18, 0, 4)}}₺</span></p>
+                                        <p class="shopping-cart__subtotal"><span>Ara Tutar</span><span class="price">{{Cart::subtotal()}} ₺</span></p><hr>
+                                        <p class="shopping-cart__subtotal"><span>KDV</span><span class="price">{{ $tax = substr(Cart::subTotal()*0.18, 0, 4)}}₺</span></p><hr>
                                         <p class="shopping-cart__subtotal"><span><b>TOPLAM TUTAR</b></span><span class="price-total">{{Cart::subTotal()+$tax}}₺</span></p>
                                     </div><a class="btn shopping-cart__checkout" href="{{ route('payment') }}">Ödeme Yap</a>
                                 </div>

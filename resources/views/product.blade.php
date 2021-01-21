@@ -66,9 +66,6 @@
                                             {{ csrf_field() }}
                                             <input type="hidden" name="id" value="{{ $product->id }}">
                                             <button style="border:1px solid #ff7200" type="submit" class="ps-product__addcart ps-button" data-toggle="modal"  data-target="#popupAddToCart" ><i class="icon-cart"></i>SEPETE EKLE</button>
-
-
-
                                         </form>
                                     </div>
                                 </div>

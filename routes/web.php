@@ -19,10 +19,23 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*
+|--------------------------------------------------------------------------
+|Admin Kısmı
+|--------------------------------------------------------------------------
+*/
 
+Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
+
+    Route::get('/login' ,[UserController::class, 'login'])->name('admin.login');
+    Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
+
+
+});
+
+
+/////////////////////////////////////////////////
 Route::get('/', [HomeController::class,'index'])->name('homepage');
-
-
 Route::get('/category/{slug_categoryName}', [CategoryController::class,'index'])->name('category');
 
 Route::get('/product/{slug_productName}', [ProductController::class,'index'])->name('product');
@@ -39,9 +52,10 @@ Route::group(['prefix' => 'shoppingCart'], function () {
     Route::PATCH('/guncelle/{rowId}',[ShoppingcartController::class,'update'])->name('shoppingCart.update');
 });
 
+Route::get('/payment', [PaymentController::class,'index'])->name('payment');
+Route::post('/payment', [PaymentController::class,'payment'])->name('payment');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/payment', [PaymentController::class,'index'])->name('payment');
     Route::get('/orders', [OrderController::class,'index'])->name('orders');
     Route::get('/orders/{id}', [OrderController::class,'detail'])->name('order');
 });
@@ -54,7 +68,5 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/activate/{key}',[UserController::class, 'activate'])->name('activate');
     Route::post('/logout',[UserController::class, 'logout'])->name('users.logout');
 });
-
-
 
 

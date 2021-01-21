@@ -20,7 +20,7 @@ class ShoppingcartController extends Controller
 
       $cartItem=Cart::add($product->id, $product->product_name, 1, $product->price, [ 'slug'=>$product->slug ]);
 
-        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına getiren kod.
+        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına ekleyen kod.
             $active_shoppingcart_id=session('active_shoppingcart_id');
 
             if(!isset($active_shoppingcart_id)){
@@ -43,7 +43,7 @@ class ShoppingcartController extends Controller
     }
     public function delete($rowId){
 
-        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına getiren kod.
+        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına ekleyen kod.
             $active_shoppingcart_id=session('active_shoppingcart_id');
             $cartItem=Cart::get($rowId);
             shoppingcartProduct::where('shopping_carts_id',$active_shoppingcart_id)->where('products_id',$cartItem->id)->delete();
@@ -55,7 +55,7 @@ class ShoppingcartController extends Controller
 
     }
     public function clear(){
-        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına getiren kod.
+        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına ekleyen kod.
             $active_shoppingcart_id=session('active_shoppingcart_id');
             shoppingcartProduct::where('shopping_carts_id',$active_shoppingcart_id)->delete();
         }
@@ -63,7 +63,7 @@ class ShoppingcartController extends Controller
         return redirect()->route('shoppingCart');
     }
     public function update($rowId ){
-        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına getiren kod.
+        if(auth()->check()){ //kullanıcı giriş yapmışsa sepetteki verileri veritabanına ekleyen kod.
             $active_shoppingcart_id=session('active_shoppingcart_id');
             $cartItem=Cart::get($rowId);
 

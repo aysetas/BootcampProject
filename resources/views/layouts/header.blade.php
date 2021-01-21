@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{config('app.locale')}}">
 
 <head>
     <meta charset="utf-8">
@@ -203,7 +203,7 @@
                                             <p class="col-6 title">ARA TUTAR</p>
                                             <div class="col-6 text-right total">{{ cart::subtotal() }}</div>
 
-                                            <div class="col-12 d-flex"><a class="view-cart" href="{{ route('shoppingCart') }}">Sepeti Görüntüle</a><a class="{{ route('payment') }}" href="">Ödeme Yap</a></div>
+                                            <div class="col-12 d-flex"><a class="view-cart" href="{{ route('shoppingCart') }}">Sepeti Görüntüle</a><a class="view-cart" href="{{route('payment')}}">Ödeme Yap</a></div>
                                         </div>
                                         @else
                                         <div class="text-center">

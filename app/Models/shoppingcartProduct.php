@@ -12,4 +12,8 @@ class shoppingcartProduct extends Model
     use SoftDeletes;
 
     protected $guarded=[]; //tablomuzda tüm alanların eklebilir olmasını sağlar
+
+    public function Products(){
+        return $this->belongsTo('App\Models\Products');
+    }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserRegisterMail;
+use App\Models\shoppingCart;
+use App\Models\shoppingcartProduct;
 use App\Models\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -26,8 +29,33 @@ class UserController extends Controller
         ];
         if (auth()->attempt($credentials, request()->has('rememberme'))){
          request()->session()->regenerate();
+
+         $active_shoppingcart_id=shoppingCart::active_shoppingcart_id();//veritabanındaki sepet idsini çektim.
+         if(is_null($active_shoppingcart_id)){
+            $active_shoppingcart=shoppingCart::create(['users_id'=>auth()->id()]);
+            $active_shoppingcart_id=$active_shoppingcart->id;
+         }
+
+
+         session()->put('active_shoppingcart_id',$active_shoppingcart_id);                    //bunu session aktardım.
+         if(Cart::count()>0){                                  //sessiondaki ürünleri veritabanında varsa güncelledik yoksa yoksa ekleme işlemi yaptım.
+             foreach(Cart::content() as $cartItem){            //bu işlemleri yaparak veritabanındaki tüm işlemleri senkronize ettim.
+                 shoppingcartProduct::updateOrCreate(          //yani sessionla veritabanını birleştirmiş oldum.
+                     ['shopping_carts_id'=>$active_shoppingcart_id, 'products_id'=>$cartItem->id],
+                     ['quantity'=>$cartItem->qty, 'price'=>$cartItem->price, 'position'=>'beklemede']
+                 );
+
+             }
+         }
+         Cart::destroy();                                    //sonra veritabanını boşalttım
+         $shoppingcartproducts=shoppingcartProduct::where('shopping_carts_id', $active_shoppingcart_id)->get();//veritanındaki ürünleri sessiona tekrar ekledim.
+         foreach($shoppingcartproducts as $shoppingcartproduct){
+             Cart::add($shoppingcartproduct->Products->id, $shoppingcartproduct->Products->product_name, $shoppingcartproduct->quantity, $shoppingcartproduct->price,['slug'=>$shoppingcartproduct->Products->slug]);
+         }
          return redirect()->intended('/');
         }
+
+
         else{
             $errors=['email'=>'Hatalı giriş'];
             return back()->withErrors($errors);
