@@ -8,6 +8,7 @@ use App\Http\Controllers\ShoppingcartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Yonetim;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,22 +20,7 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-|--------------------------------------------------------------------------
-|Admin Kısmı
-|--------------------------------------------------------------------------
-*/
 
-Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
-
-    Route::get('/login' ,[UserController::class, 'login'])->name('admin.login');
-    Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
-
-
-});
-
-
-/////////////////////////////////////////////////
 Route::get('/', [HomeController::class,'index'])->name('homepage');
 Route::get('/category/{slug_categoryName}', [CategoryController::class,'index'])->name('category');
 
@@ -69,4 +55,53 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('/logout',[UserController::class, 'logout'])->name('users.logout');
 });
 
+/*
+|--------------------------------------------------------------------------
+|Admin Kısmı
+|-----------------------------------
+*/
 
+Route::group(['prefix' => 'yonetim','namespace' => 'Yonetim'], function () {
+
+    Route::redirect('/', '/yonetim/login');
+
+
+    Route::match(['get' , 'post'],'/login', [Yonetim\UserController::class, 'login'])->name('yonetim.login');
+    Route::get('/oturumukapat', [Yonetim\UserController::class, 'logout'])->name('yonetim.logout');
+
+    Route::group(['middleware' => 'yonetim'], function () {
+        Route::get('/anasayfa', [Yonetim\HomeController::class, 'index'])->name('yonetim.homepage');
+    });
+
+    //yonetim/kullanici
+    Route::group(['prefix' => 'kullanici'], function () {
+
+        Route::match(['get', 'post'], '/', [Yonetim\UserController::class, 'index'])->name('yonetim.user.index');
+
+        Route::get('/yeni', [Yonetim\UserController::class, 'form'])->name('yonetim.user.create');
+        Route::get('/duzenle/{id}', [Yonetim\UserController::class, 'form'])->name('yonetim.user.update');
+        Route::post('/kaydet/{id?}', [Yonetim\UserController::class, 'save'])->name('yonetim.user.save');
+        Route::get('/sil/{id}', [Yonetim\UserController::class, 'delete'])->name('yonetim.user.delete');
+    });
+        //yonetim/urun
+        Route::group(['prefix' => 'urun'], function () {
+
+            Route::match(['get', 'post'], '/', [Yonetim\ProductController::class, 'index'])->name('yonetim.product.index');
+
+            Route::get('/yeni', [Yonetim\ProductController::class, 'form'])->name('yonetim.product.create');
+            Route::get('/duzenle/{id}', [Yonetim\ProductController::class, 'form'])->name('yonetim.product.update');
+            Route::post('/kaydet/{id?}', [Yonetim\ProductController::class, 'save'])->name('yonetim.product.save');
+            Route::get('/sil/{id}', [Yonetim\ProductController::class, 'delete'])->name('yonetim.product.delete');
+        });
+
+        //yonetim/kategori
+        Route::group(['prefix' => 'kategori'], function () {
+
+            Route::match(['get', 'post'], '/', [Yonetim\CategoryController::class, 'index'])->name('yonetim.category.index');
+
+            Route::get('/yeni', [Yonetim\CategoryController::class, 'form'])->name('yonetim.category.create');
+            Route::get('/duzenle/{id}', [Yonetim\CategoryController::class, 'form'])->name('yonetim.category.update');
+            Route::post('/kaydet/{id?}', [Yonetim\CategoryController::class, 'save'])->name('yonetim.category.save');
+            Route::get('/sil/{id}', [Yonetim\CategoryController::class, 'delete'])->name('yonetim.category.delete');
+        });
+});

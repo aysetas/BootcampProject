@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password' ,60);
             $table->string('activation_key',60)->nullable();
             $table->boolean('active')->default(0);
+            $table->boolean('admin')->default(0);
             $table->rememberToken();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
